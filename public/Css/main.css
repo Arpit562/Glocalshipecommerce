@@ -535,8 +535,8 @@
 .view-all-btn {
   display: inline-flex;
   align-items: center;
-  background-color: transparent; /* transparent background */
-  color: black;
+  background-color:#6c3d25;
+  color: white;
   padding: 12px 24px;
   font-size: 1rem;
   border-radius: 30px;
@@ -594,7 +594,7 @@
 
 .quote-icon {
   font-size: 24px;
-  color: #ff5722;
+  color: #6c3d25;
   margin-bottom: 12px;
 }
 

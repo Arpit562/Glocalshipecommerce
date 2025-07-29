@@ -34,26 +34,26 @@ const categories = [
 
 const ProductCategories = () => {
   return (
-    <section className="py-10 px-4 mt-11 md:px-10 font-['Inter']">
+    <section className="py-10 px-4 md:px-10 font-['Inter'] bg-[#f4f2e9]">
       <div className="mb-6 text-center">
         <h2 className="text-2xl md:text-3xl font-semibold text-gray-800">
           Explore our thoughtful and planet-first ✧ <em className="italic">Categories</em>
         </h2>
       </div>
+<Swiper
+  spaceBetween={20}
+  slidesPerView={1}
+  autoplay={{ delay: 2500, disableOnInteraction: false }}
+  pagination={{ clickable: true }}
+  className="custom-swiper px-4 mt-5 pb-10" 
+  breakpoints={{
+    640: { slidesPerView: 2 },
+    768: { slidesPerView: 3 },
+    1024: { slidesPerView: 4 },
+  }}
+  modules={[Autoplay, Pagination]}
+  >
 
-      <Swiper
-        spaceBetween={20}
-        slidesPerView={1}
-        autoplay={{ delay: 2500, disableOnInteraction: false }}
-        pagination={{ clickable: true }}
-        breakpoints={{
-          640: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 },
-        }}
-        modules={[Autoplay, Pagination]}
-        className="px-4 mt-5"
-      >
         {categories.map((cat, index) => (
           <SwiperSlide key={index}>
             <div className="relative h-[300px] rounded-lg overflow-hidden shadow-lg bg-white transition-transform hover:scale-[1.02]">
@@ -62,17 +62,16 @@ const ProductCategories = () => {
                 alt={cat.name}
                 className="w-full h-full object-cover"
               />
-              <div className=" absolute inset-0 bg-black/40 text-white flex flex-col items-center justify-center text-center px-4">
-                <div className='mt-16'>
-                  <p className="text-sm text-gray-200 mb-1">Explore</p>
-                  <h3 className="text-lg font-semibold italic mt-">{cat.name}</h3>
-                </div>
-                <button className=" mt-20 bg-yellow-100 text-black px-4 py-[4px] rounded-full text-sm font-medium w-fit hover:bg-yellow-200 transition">
-                Shop →
-              </button>
+              {/* Overlay moved to bottom */}
+              <div className="absolute bottom-0 w-full bg-black/50 py-4 px-4 text-center">
+                <p className="text-sm text-gray-200">Explore</p>
+                <h3 className="text-lg font-semibold italic text-white">{cat.name}</h3>
+                <button className="mt-2 bg-yellow-100 text-black px-4 py-[4px] rounded-full text-sm font-medium hover:bg-yellow-200 transition">
+                  Shop →
+                </button>
               </div>
-              
             </div>
+
           </SwiperSlide>
         ))}
       </Swiper>
