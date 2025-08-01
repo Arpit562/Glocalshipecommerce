@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiEdit2, FiTrash2, FiChevronRight } from "react-icons/fi";
-
+import { useNavigate } from "react-router-dom";
 const CartPage = () => {
   const [items, setItems] = useState([
     {
@@ -26,6 +26,9 @@ const CartPage = () => {
       image: "./img/img4.jpg",
     },
   ]);
+
+   const navigate = useNavigate(); 
+
 
   const updateQuantity = (id, delta) => {
     setItems((prev) =>
@@ -145,7 +148,12 @@ const CartPage = () => {
               <span>₹{total.toLocaleString()}</span>
             </div>
           </div>
-          <button className="checkout-btn">Proceed to Checkout</button>
+        <button
+          className="checkout-btn"
+          onClick={() => navigate("/CheckOut")}
+        >
+          Proceed to Checkout
+        </button>
           <p className="delivery-estimate">
             Estimated delivery by <strong>April 25, 2023</strong>
           </p>

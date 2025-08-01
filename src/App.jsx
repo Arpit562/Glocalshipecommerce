@@ -8,6 +8,7 @@ import Wishlist from './auth/Wishlist';
 import AddtoCart from './auth/AddtoCart';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Checkout from './HomePagemain/CheckOut';
 
 import './App.css';
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/cart" element={<AddtoCart />} />
+          <Route path="/CheckOut" element={<Checkout />} />
 
           {/* Optional: 404 Page */}
           <Route path="*" element={
