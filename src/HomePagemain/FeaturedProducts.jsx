@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaHeart, FaShoppingCart, FaArrowRight, FaEye } from 'react-icons/fa';
 
 const products = [

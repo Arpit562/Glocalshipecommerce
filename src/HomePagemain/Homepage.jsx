@@ -7,16 +7,17 @@ import FeaturedProducts from './FeaturedProducts.jsx'
 import TestimonialSlider from './Testimonials.jsx'
 import MenuNavigation from './MenuNavigation.jsx'
 import WhyChooseUs from './WhyChooseUs.jsx'
+import OfferSection from './OfferSection.jsx'
 
 const Homepage = () => {
   return (
     <div>
       <Navbar />
-      {/* <MenuNavigation/> */}
       <Banner/>
       <WhyChooseUs/>
       <ProductCategories />
       <FeaturedProducts />
+      <OfferSection />
       <TestimonialSlider />
       <Footer />
     </div>
