@@ -75,9 +75,9 @@ const CartPage = () => {
       </div>
 
       <div className="cart-content">
-        <div className="cart-items">
+        <div className="cart-items ">
           {items.map((item) => (
-            <div className="cart-item" key={item.id}>
+            <div className="cart-item rounded-lg shadow p-6 border border-amber-400/50" key={item.id}>
               <div className="item-image">
                 <img src={item.image} alt={item.name} />
               </div>
@@ -124,7 +124,7 @@ const CartPage = () => {
           ))}
         </div>
 
-        <div className="order-summary">
+        <div className="order-summary rounded-lg shadow p-6 border border-amber-400/50">
           <h3>Order Summary</h3>
           <div className="summary-details">
             <div className="summary-row">
@@ -149,7 +149,7 @@ const CartPage = () => {
             </div>
           </div>
         <button
-          className="checkout-btn"
+          className="w-full mb-3 py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-black text-sm rounded-md hover:bg-[#6c3d25] cursor-pointer"
           onClick={() => navigate("/CheckOut")}
         >
           Proceed to Checkout
