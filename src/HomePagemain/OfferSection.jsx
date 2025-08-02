@@ -47,7 +47,7 @@ const OfferSection = () => {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-4 sm:p-6">
                             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-1">Premium Handmade Collection</h3>
                             <p className="text-sm sm:text-base text-amber-100 mb-2">Crafted with passion using ancient techniques</p>
-                            <span className="inline-block bg-amber-400 text-black px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium">
+                            <span className="inline-block  text-white bg-amber-400 text-black px-2 py-1 sm:px-3 sm:py-1 rounded-md text-xs sm:text-sm font-medium">
                                 Limited Stock Available
                             </span>
                         </div>
@@ -119,7 +119,7 @@ const OfferSection = () => {
                             <span className="text-xl sm:text-2xl font-bold text-amber-600">₹12,524.16</span>
                             <span className="ml-2 text-green-600 text-xs sm:text-sm">(25% OFF)</span>
                         </p>
-                        <button className="mt-2 px-5 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-black rounded-md text-sm sm:text-base font-semibold hover:from-amber-500 hover:to-amber-600 transition-all shadow-md shadow-amber-400/20 hover:shadow-amber-400/30">
+                        <button className="mt-2 px-5 text-white py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-black rounded-md text-sm sm:text-base font-semibold hover:from-amber-500 hover:to-amber-600 transition-all shadow-md shadow-amber-400/20 hover:shadow-amber-400/30">
                             Grab the Deal Now
                         </button>
                         <p className="text-xs text-gray-600">Only 12 items left at this price!</p>
