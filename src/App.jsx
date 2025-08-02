@@ -9,6 +9,8 @@ import AddtoCart from './auth/AddtoCart';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Checkout from './HomePagemain/CheckOut';
+import SignUpPage from './HomePagemain/SignUpPage';
+import LogInPage from './HomePagemain/LogInPage';
 
 import './App.css';
 
@@ -31,6 +33,8 @@ function App() {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/cart" element={<AddtoCart />} />
           <Route path="/CheckOut" element={<Checkout />} />
+          <Route path="/SignUpPage" element={<SignUpPage />} />
+          <Route path="/LogInPage" element={<LogInPage />} />
 
           {/* Optional: 404 Page */}
           <Route path="*" element={
