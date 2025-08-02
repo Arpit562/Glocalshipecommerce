@@ -18,19 +18,20 @@ const Footer = () => {
           <h2 className="text-2xl lg:text-3xl font-playfair italic font-bold tracking-tight bg-gradient-to-r from-gray-800 to-amber-500 bg-clip-text text-transparent">Glocalship<span className="text-amber-500">Ecommerce</span></h2>
           <p className="text-sm mb-4">Delivering products globally with care and speed.</p>
           <h4 className="font-semibold text-sm mb-2">Subscribe to Newsletter</h4>
-          <form className="flex gap-2">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-3 py-2 rounded-md text-sm focus:outline-none border border-amber-400/50 bg-white/70 backdrop-blur-sm "
-            />
-            <button
-              type="submit"
-              className="bg-gradient-to-r from-amber-400 to-amber-500 text-black text-sm px-4 py-2 rounded-md hover:bg-[#6c3d25]"
-            >
-              Subscribe
-            </button>
-          </form>
+        <form className="flex flex-col sm:flex-row gap-2 w-full">
+  <input
+    type="email"
+    placeholder="Enter your email"
+    className="w-full sm:w-auto flex-1 px-3 py-2 rounded-md text-sm focus:outline-none border border-amber-400/50 bg-white/70 backdrop-blur-sm"
+  />
+  <button
+    type="submit"
+    className="w-full sm:w-auto bg-gradient-to-r from-amber-400 to-amber-500 text-black text-sm px-4 py-2 rounded-md hover:bg-[#6c3d25]"
+  >
+    Subscribe
+  </button>
+</form>
+
         </div>
 
         {/* Product Links */}

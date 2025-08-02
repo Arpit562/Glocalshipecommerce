@@ -424,7 +424,7 @@ const Navbar = () => {
               </NavLink>
 
               <NavLink
-                to="/SignUpPage"
+                to="/SignUpPag"
                 className={({ isActive }) =>
                   `p-2 ${isActive ? 'text-amber-500 border-amber-400' : 'text-gray-600 border-gray-300'} hover:text-amber-500 transition-colors duration-200 rounded-full border hover:border-amber-400`
                 }
