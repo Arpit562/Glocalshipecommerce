@@ -46,9 +46,8 @@ const AccordionItem = ({ item, isOpen, onClick }) => {
           {item.question}
         </span>
         <FaChevronDown
-          className={`rotate-icon ${
-            isOpen ? "open text-amber-600" : "text-gray-600"
-          }`}
+          className={`rotate-icon ${isOpen ? "open text-amber-600" : "text-gray-600"
+            }`}
         />
       </button>
 

@@ -18,6 +18,9 @@ const Footer = () => {
           <h2 className="text-2xl font-bold mb-3">GlocalShipeComers</h2>
           <p className="text-sm mb-4">Delivering products globally with care and speed.</p>
           <h4 className="font-semibold text-sm mb-2">Subscribe to Newsletter</h4>
+
+
+
           <form className="flex flex-col sm:flex-row gap-2 w-full">
             <input
               type="email"
@@ -31,6 +34,7 @@ const Footer = () => {
               Subscribe
             </button>
           </form>
+
         </div>
 
         {/* Product Links */}
