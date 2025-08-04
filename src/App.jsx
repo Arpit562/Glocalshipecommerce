@@ -28,7 +28,7 @@ function App() {
           <Route path="/all-categories" element={<CetegoriesPagelayout />} />
           <Route path="/all-categories/:mainCategory" element={<CetegoriesPagelayout />} />
           <Route path="/all-categories/:mainCategory/:subCategory" element={<CetegoriesPagelayout />} />
-
+            
           <Route path="/contact" element={<Contact />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/cart" element={<AddtoCart />} />

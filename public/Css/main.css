@@ -1156,7 +1156,7 @@ label {
 .featured-grid {
   display: flex;
   flex-wrap: wrap;
-  /* gap: 40px; */
+  gap: 16px;
   justify-content: space-evenly;
   scroll-snap-type: x mandatory;
 }
@@ -1369,4 +1369,29 @@ label {
     max-width: 95%;
     margin: 0 auto;
   }
+}
+
+
+/*  accordion    */
+
+/* Accordion.css */
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+}
+
+.rotate-icon {
+  transition: transform 0.3s ease;
+}
+
+.rotate-icon.open {
+  transform: rotate(180deg);
+}
+
+.scroll-hidden::-webkit-scrollbar {
+  display: none;
+}
+.scroll-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
