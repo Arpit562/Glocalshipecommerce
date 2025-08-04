@@ -2,8 +2,10 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import './ProductCategories.css'; 
 
 const categories = [
   {
@@ -33,8 +35,33 @@ const categories = [
 ];
 
 const ProductCategories = () => {
+    const settings = {
+    dots: false,
+    infinite: true,
+     arrows: false,
+    speed: 800,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3500,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+  
   return (
-    <section className="py-10 px-4 md:px-10 font-['Inter'] bg-[#f4f2e9]">
+    <section className="py-10 px-4 md:px-10 font-['Inter'] bg-gray-50">
       <div className="mb-6 text-center">
         <h2 className="text-3xl  font-bold text-gray-800 explore-thought" >
           Explore our thoughtful and planet-first ✧ <em className="italic">Categories</em>
@@ -45,7 +72,7 @@ const ProductCategories = () => {
         slidesPerView={1}
         autoplay={{ delay: 2500, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        className="custom-swiper px-4 mt-5 pb-10"
+        className="custom-swiper px-4 mt-5 pb-14" // 👈 more bottom padding
         breakpoints={{
           640: { slidesPerView: 2 },
           768: { slidesPerView: 3 },
@@ -53,7 +80,6 @@ const ProductCategories = () => {
         }}
         modules={[Autoplay, Pagination]}
       >
-
         {categories.map((cat, index) => (
           <SwiperSlide key={index}>
             <div className="relative h-[300px] rounded-lg overflow-hidden shadow-lg bg-white transition-transform hover:scale-[1.02]">
@@ -62,25 +88,19 @@ const ProductCategories = () => {
                 alt={cat.name}
                 className="w-full h-full object-cover"
               />
-              {/* Overlay moved to bottom */}
               <div className="absolute bottom-0 w-full bg-black/50 py-4 px-4 text-center">
                 {/* <p className="text-sm text-gray-200">Explore</p> */}
                 <h3 className="text-lg font-semibold italic text-white">{cat.name}</h3>
 
                 <div className="flex justify-center mt-4">
-                  <button className="relative text-center overflow-hidden bg-gradient-to-r from-amber-400 to-amber-500 text-black px-4 py-[4px] rounded-md text-sm font-medium flex items-center gap-1 group transition-all duration-500 ease-in-out hover:from-yellow-400 hover:to-orange-500 hover:shadow-md">
-                    <span className="relative z-10">Shop</span>
+                  <button className="relative cursor-pointer text-center  text-white overflow-hidden bg-gradient-to-r from-amber-400 to-amber-500 text-black px-4 py-[4px] rounded-md text-sm font-medium flex items-center gap-1 group transition-all duration-500 ease-in-out hover:from-yellow-400 hover:to-orange-500 hover:shadow-md">
+                    <Link to="/all-categories"><span className="relative z-10">Shop</span></Link>
                     <span className="relative z-10 transition-transform duration-500 group-hover:translate-x-1">→</span>
-
-                    {/* Glow layer */}
                     <span className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-500 opacity-0 group-hover:opacity-30 blur-sm transition-opacity duration-500 rounded-md"></span>
                   </button>
                 </div>
-
-
               </div>
             </div>
-
           </SwiperSlide>
         ))}
       </Swiper>

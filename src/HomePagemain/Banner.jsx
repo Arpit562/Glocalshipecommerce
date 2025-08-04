@@ -59,7 +59,7 @@ const BannerSlider = () => {
             <p className="text-md md:text-lg mb-5 max-w-xl drop-shadow">
               {slide.subtitle}
             </p>
-            <button className="flex items-center gap-2 bg-white text-black px-6 py-2 rounded-full text-sm font-semibold hover:bg-gray-200 transition duration-300 shadow-md w-fit">
+            <button className="flex items-center text-white  bg-gradient-to-r from-amber-400 to-amber-500  gap-2 bg-white text-black px-6 py-2 rounded-md text-sm font-semibold hover:bg-gray-200 transition duration-300 shadow-md w-fit">
               Shop Now <FaArrowRight />
             </button>
           </div>

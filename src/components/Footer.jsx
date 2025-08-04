@@ -11,13 +11,28 @@ import {
 
 const Footer = () => {
   return (
-    <footer className=" bg-white/70 backdrop-blur-sm text-[#2c2c2c] px-6 py-12">
+    <footer className="bg-gray-50 text-[#2c2c2c] px-6 py-12">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
         {/* Brand */}
         <div className="md:col-span-2">
-          <h2 className="text-2xl lg:text-3xl font-playfair italic font-bold tracking-tight bg-gradient-to-r from-gray-800 to-amber-500 bg-clip-text text-transparent">Glocalship<span className="text-amber-500">Ecommerce</span></h2>
+          <h2 className="text-2xl font-bold mb-3">GlocalShipeComers</h2>
           <p className="text-sm mb-4">Delivering products globally with care and speed.</p>
           <h4 className="font-semibold text-sm mb-2">Subscribe to Newsletter</h4>
+<<<<<<< HEAD
+          <form className="flex gap-2">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 px-3 py-2 rounded-md text-sm focus:outline-none border border-amber-400/50  bg-white/70 backdrop-blur-sm "
+            />
+            <button
+              type="submit"
+              className="bg-gradient-to-r from-amber-400 to-amber-500 text-white text-sm px-4 py-2 rounded-md hover:bg-[#6c3d25]"
+            >
+              Subscribe
+            </button>
+          </form>
+=======
         <form className="flex flex-col sm:flex-row gap-2 w-full">
   <input
     type="email"
@@ -32,6 +47,7 @@ const Footer = () => {
   </button>
 </form>
 
+>>>>>>> c824b54cad2573f652a20dc64724a0c952d912df
         </div>
 
         {/* Product Links */}
@@ -63,13 +79,13 @@ const Footer = () => {
           <h4 className="font-semibold mb-4">Contact Us</h4>
           <ul className="text-sm space-y-3">
             <li className="flex items-center gap-2">
-              <FaEnvelope className="text-2xl bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text"/>  support@glocalshipe.com
+              <FaEnvelope className="text-2xl bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-amber-500"/>  support@glocalshipe.com
             </li>
             <li className="flex items-center gap-2">
-              <FaPhoneAlt className="text-2xl bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text" /> +91 9876543210
+              <FaPhoneAlt className="text-2xl bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-amber-500" /> +91 9876543210
             </li>
             <li className="flex items-center gap-2">
-              <FaMapMarkerAlt className="text-2xl bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text " /> 3891 Ranchview Dr. CA 62639
+              <FaMapMarkerAlt className="text-2xl bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-amber-500" /> 3891 Ranchview Dr. CA 62639
             </li>
           </ul>
         </div>
