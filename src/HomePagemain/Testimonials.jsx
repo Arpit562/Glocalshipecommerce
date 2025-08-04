@@ -24,7 +24,7 @@ const testimonials = [
 
 const TestimonialSlider = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
      arrows: false,
     speed: 800,
