@@ -6,7 +6,7 @@ const LogInPage = () => {
 
   return(
     <>
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-amber-400 to-amber-400">
+      <div className="min-h-screen flex items-center justify-center bg-[#f4f2e9]">
       <div className="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-md">
         <h2 className="text-3xl font-bold text-gray-900">Login</h2>
         <p className="text-gray-600 mb-6">Access your GlocalshipEcommerce Account</p>

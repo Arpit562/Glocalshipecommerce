@@ -1,10 +1,15 @@
 import React from 'react';
 import Slider from 'react-slick';
 import {
-  FaStar, FaCrown,FaFire, FaHeart, FaEye, FaShoppingCart
+  FaStar,
+  FaFire,
+  FaHeart,
+  FaEye,
+  FaShoppingCart
 } from 'react-icons/fa';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
 
 const TrendingProducts = () => {
   const products = [
@@ -43,75 +48,85 @@ const TrendingProducts = () => {
   ];
 
   const settings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-  };
+  dots: false,
+  infinite: true,
+  speed: 600,
+  arrows: false, 
+  autoplay: true,
+  autoplaySpeed: 3000,
+  pauseOnHover: false,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024, // tablets
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
+      breakpoint: 768, // mobile large
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 480, // mobile small
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
+};
+
 
   const ProductCard = ({ product }) => (
-  <div className="product-card relative">
-    {/* 🔥 Trending Badge */}
-    <div className="absolute top-3 left-3 z-10">
-      <span className="px-3 py-1 text-xs font-semibold rounded-full bg-gradient-to-r from-red-500 to-amber-500 text-white shadow">
-        Trending
-      </span>
-    </div>
-
-    {/* 📸 Image with overlay icons */}
-    <div className="product-image-wrapper">
-      <img src={product.image} alt={product.title} className="best-seller-image" />
-      <div className="icon-overlay">
-        <FaHeart className="icon heart-icon" />
-        <FaShoppingCart className="icon cart-icon" />
-        <FaEye className="icon eye-icon" />
+    <div className="slider-card relative">
+      <div className="absolute top-3 left-3 z-10">
+        <span className="trending-badge">Trending</span>
       </div>
-    </div>
 
-    {/* 📋 Content */}
-    <div className="product-content">
-      <h2 className="product-title">{product.title}</h2>
-      <p className="product-description">{product.description}</p>
-      <div className="product-footer">
-        <p className="product-price">{product.price}</p>
-        <div className="product-rating">
-          <FaStar className="star-icon" />
-          <span>{product.rating}</span>
+      <div className="slider-image-wrapper">
+        <img src={product.image} alt={product.title} className="slider-image" />
+        <div className="slider-icon-overlay">
+          <FaHeart className="icon heart-icon" />
+          <FaShoppingCart className="icon cart-icon" />
+          <FaEye className="icon eye-icon" />
+        </div>
+      </div>
+
+      <div className="slider-content">
+        <h2 className="slider-title">{product.title}</h2>
+        <p className="slider-description">{product.description}</p>
+        <div className="slider-footer">
+          <p className="slider-price">{product.price}</p>
+          <div className="slider-rating">
+            <FaStar className="star-icon" />
+            <span>{product.rating}</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
 
   return (
-    <div className="featured-container bg-[#f4f2e9]">
-      <div className="top-sec custom-border-box">
-        <div className="heading-row">
-          <div className="crown-icon">
-            <FaFire className="crown" />
-          </div>
-          <h2 className="featured-heading">Trending Products</h2>
-        </div>
-        <p className="featured-subtext">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis fugiat, doloribus error, sapiente.
-        </p>
-      </div>
+    <div className="slider-section bg-[#f4f2e9]">
+<div className="slider-top">
+  <div className="slider-heading-row">
+    <div className="slider-icon">
+      <FaFire className="icon-star text-white" />
+    </div>
+    <h2 className="slider-heading">Trending Products</h2>
+  </div>
+  <p className="slider-subtext">
+    Discover the latest additions to our collection, carefully curated for your unique style.
+  </p>
+</div>
 
-      {/* Desktop view (grid layout) */}
-      <div className="featured-grid">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-
-      {/* Mobile view (slider only on ≤576px) */}
-      <div className="featured-slider">
+      <div className="slider-wrapper">
         <Slider {...settings}>
           {products.map((product) => (
-            <div key={product.id}>
+            <div key={product.id} className="slider-slide">
               <ProductCard product={product} />
             </div>
           ))}

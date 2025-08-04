@@ -7,6 +7,7 @@ import {
   FaEye,
   FaShoppingCart,
   FaArrowRight,
+  FaCrow,
 } from 'react-icons/fa';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -48,83 +49,84 @@ const FeaturedProducts = () => {
   ];
 
   const settings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-  };
+  dots: false,
+  infinite: true,
+  speed: 600,
+  arrows: false, 
+  autoplay: true,
+  autoplaySpeed: 3000,
+  pauseOnHover: false,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024, // tablets
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
+      breakpoint: 768, // mobile large
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 480, // mobile small
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
+};
 
   const ProductCard = ({ product }) => (
-    <div className="product-card">
-      <div className="product-image-wrapper">
-        <img src={product.image} alt={product.title} className="best-seller-image" />
-        <div className="icon-overlay">
-          <FaHeart className="icon heart-icon text-rose-500" />
-          <FaShoppingCart className="icon cart-icon text-amber-600" />
-          <FaEye className="icon eye-icon text-gray-700" />
-        </div>
-      </div>
-      <div className="product-content">
-        <h2 className="product-title">{product.title}</h2>
-        <p className="product-description">{product.description}</p>
-        <div className="product-footer">
-          <p className="product-price">{product.price}</p>
-          <div className="product-rating">
-            <FaStar className="star-icon text-yellow-500" />
-            <span>{product.rating}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+     <div className="slider-card relative">
+         <div className="slider-image-wrapper">
+           <img src={product.image} alt={product.title} className="slider-image" />
+           <div className="slider-icon-overlay">
+             <FaHeart className="icon heart-icon" />
+             <FaShoppingCart className="icon cart-icon" />
+             <FaEye className="icon eye-icon" />
+           </div>
+         </div>
+   
+         <div className="slider-content">
+           <h2 className="slider-title">{product.title}</h2>
+           <p className="slider-description">{product.description}</p>
+           <div className="slider-footer">
+             <p className="slider-price">{product.price}</p>
+             <div className="slider-rating">
+               <FaStar className="star-icon" />
+               <span>{product.rating}</span>
+             </div>
+           </div>
+         </div>
+       </div>
   );
 
   return (
-    <div className="featured-container bg-[#f4f2e9]">
-      {/* Heading */}
-      <div className="top-sec custom-border-box">
-        <div className="heading-row">
-          <div className="crown-icon">
-            <FaCrown className="crown" />
-          </div>
-          <h2 className="featured-heading">Best Seller</h2>
-        </div>
-        <p className="featured-subtext text-center max-w-xl mx-auto">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis fugiat, doloribus error, sapiente.
-        </p>
-      </div>
+    <div className="slider-section bg-[#f4f2e9]">
+<div className="slider-top">
+  <div className="slider-heading-row">
+    <div className="slider-icon">
+      <FaCrown className="icon-star text-white" />
+    </div>
+    <h2 className="slider-heading">New Arrivals</h2>
+  </div>
+  <p className="slider-subtext">
+    Discover the latest additions to our collection, carefully curated for your unique style.
+  </p>
+</div>
 
-      {/* Desktop Grid View */}
-      <div className="featured-grid">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-
-      {/* Mobile Slider View */}
-      <div className="featured-slider sm:hidden block mt-10">
+      <div className="slider-wrapper">
         <Slider {...settings}>
           {products.map((product) => (
-            <div key={product.id}>
+            <div key={product.id} className="slider-slide">
               <ProductCard product={product} />
             </div>
           ))}
         </Slider>
-      </div>
-
-      {/* View All Button */}
-      <div className="flex justify-center mt-10">
-        <button className="relative text-white overflow-hidden px-6 py-3 rounded-md flex items-center gap-2 font-semibold text-black 
-          bg-gradient-to-r from-amber-400 to-amber-500 
-          transition-all duration-500 ease-in-out 
-          hover:from-yellow-400 hover:to-orange-500 
-          hover:shadow-xl group">
-          <span className="relative z-10">View All</span>
-          <FaArrowRight className="relative z-10 transition-transform duration-500 group-hover:translate-x-1" />
-          <span className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-500 opacity-0 group-hover:opacity-30 transition-opacity duration-500 blur-lg rounded-md"></span>
-        </button>
       </div>
     </div>
   );
