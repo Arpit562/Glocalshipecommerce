@@ -18,6 +18,8 @@ import ProductDetails from './Pages/Producat'
 
 
 import './App.css';
+import AdminDashboard from './admin/adminPage';
+import AdminLogin from './admin/adminlogin';
 
 function App() {
   return (
@@ -36,7 +38,12 @@ function App() {
           <Route path="/login" element={<LogInPage />} />
           <Route path="/quick-view/:id" element={<QuickViewPage />} />
       
-          <Route path="/product/:id" element={<ProductDetails/>}/>   
+          <Route path="/product/:id" element={<ProductDetails/>}/>  
+
+          {/* admin  */}
+
+           <Route path="/adminlogin" element={<AdminLogin />} />
+           <Route path="/admin" element={<AdminDashboard />} />
 
 
 
