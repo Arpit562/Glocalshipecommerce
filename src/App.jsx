@@ -2,13 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Homepage from './HomePagemain/Homepage';
-<<<<<<< HEAD
-import CetegoriesPagelayout from './CetegoriesPagelayout';
-// import Contact from './Contact';
-=======
 import CetegoriesPagelayout from './Pages/CetegoriesPagelayout';
 import Contact from './Pages/Contact';
->>>>>>> ff8d3f35dd4398c78caa37278239a5bb4abe8168
 import Wishlist from './auth/Wishlist';
 import AddtoCart from './auth/AddtoCart';
 import Navbar from './components/Navbar';
@@ -19,82 +14,60 @@ import About from './Pages/About';
 import SignUpPage from './HomePagemain/SignUpPage';
 import LogInPage from './HomePagemain/LogInPage';
 import QuickViewPage from './auth/QuickView';
-import ProductDetails from './Pages/Producat'
-
-
-import './App.css';
-<<<<<<< HEAD
+import ProductDetails from './Pages/Producat';
 import FeaturedProducts from './HomePagemain/FeaturedProducts';
-import ProductDetails from './HomePagemain/ProductDetails';
+
 import { ProductProvider } from './HomePagemain/ProductContext';
-=======
+import { WishlistProvider } from './HomePagemain/WishlistContext'; // ✅ import wishlist context
+
 import AdminDashboard from './admin/adminPage';
 import AdminLogin from './admin/adminlogin';
->>>>>>> ff8d3f35dd4398c78caa37278239a5bb4abe8168
+
+import './App.css';
 
 function App() {
   return (
     <Router>
-<<<<<<< HEAD
-      <ProductProvider> {/* ✅ Wrap everything inside ProductProvider */}
-        <div className="app">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/about" element={<About />} />
-            {/* <Route path="/contact" element={<Contact />} /> */}
-            <Route path="/wishlist" element={<Wishlist />} />
-            <Route path="/cart" element={<AddtoCart />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/account" element={<User />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/login" element={<LogInPage />} />
-            <Route path="/featuredproducts" element={<FeaturedProducts />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-=======
-      <div className="app">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/cart" element={<AddtoCart />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/account" element={<User />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/login" element={<LogInPage />} />
-          <Route path="/quick-view/:id" element={<QuickViewPage />} />
-      
-          <Route path="/product/:id" element={<ProductDetails/>}/>  
+      <ProductProvider>
+        <WishlistProvider> {/* ✅ Wrap app with wishlist provider */}
+          <div className="app">
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/cart" element={<AddtoCart />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/account" element={<User />} />
+              <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/login" element={<LogInPage />} />
+              <Route path="/featuredproducts" element={<FeaturedProducts />} />
+              <Route path="/quick-view/:id" element={<QuickViewPage />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
 
-          {/* admin  */}
+              {/* admin */}
+              <Route path="/adminlogin" element={<AdminLogin />} />
+              <Route path="/admin" element={<AdminDashboard />} />
 
-           <Route path="/adminlogin" element={<AdminLogin />} />
-           <Route path="/admin" element={<AdminDashboard />} />
+              {/* Category paths */}
+              <Route path="/all-categories" element={<CetegoriesPagelayout />} />
+              <Route path="/all-categories/:mainCategory" element={<CetegoriesPagelayout />} />
+              <Route path="/all-categories/:mainCategory/:subCategory" element={<CetegoriesPagelayout />} />
 
-
-
-        
->>>>>>> ff8d3f35dd4398c78caa37278239a5bb4abe8168
-
-            {/* Category paths */}
-            <Route path="/all-categories" element={<CetegoriesPagelayout />} />
-            <Route path="/all-categories/:mainCategory" element={<CetegoriesPagelayout />} />
-            <Route path="/all-categories/:mainCategory/:subCategory" element={<CetegoriesPagelayout />} />
-
-            {/* 404 fallback */}
-            <Route
-              path="*"
-              element={
-                <div className="text-center py-20 text-gray-600 text-xl">
-                  404 - Page Not Found
-                </div>
-              }
-            />
-          </Routes>
-          <Footer />
-        </div>
+              {/* 404 fallback */}
+              <Route
+                path="*"
+                element={
+                  <div className="text-center py-20 text-gray-600 text-xl">
+                    404 - Page Not Found
+                  </div>
+                }
+              />
+            </Routes>
+            <Footer />
+          </div>
+        </WishlistProvider>
       </ProductProvider>
     </Router>
   );
