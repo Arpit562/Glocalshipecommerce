@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { FiShoppingCart, FiEye, FiHeart } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { useWishlist } from "../Context/WishlistContext";
 import { useCart } from "../Context/CartContext";
-import { useNavigate } from "react-router-dom";
 
 const NewArrival = () => {
   const [visibleCards, setVisibleCards] = useState(4);
@@ -62,24 +61,6 @@ const NewArrival = () => {
       image: "https://via.placeholder.com/300x300?text=Economy",
     },
   ];
-
-  // Slick settings (not used in your custom scroll)
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 600,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    pauseOnHover: false,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 3 } },
-      { breakpoint: 768, settings: { slidesToShow: 2 } },
-      { breakpoint: 480, settings: { slidesToShow: 1 } },
-    ],
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -150,7 +131,6 @@ const NewArrival = () => {
             New Arrival
           </h2>
           <div className="w-32 h-1.5 bg-gradient-to-r from-amber-500 to-orange-500 mx-auto rounded-full shadow-lg" />
-
         </div>
       </div>
 
@@ -295,14 +275,11 @@ const NewArrival = () => {
               <h2 className="text-2xl font-semibold text-gray-800 mb-3">
                 {selectedProduct.title}
               </h2>
-              <p className="text-gray-500 mb-3">
-                {selectedProduct.description}
-              </p>
+              <p className="text-gray-500 mb-3">{selectedProduct.description}</p>
               <p className="font-bold text-amber-600 text-lg mb-5">
                 {selectedProduct.price}
               </p>
 
-              {/* Full-width stacked buttons */}
               {/* Full-width stacked buttons */}
               <div className="flex flex-col gap-3 w-full">
                 <button

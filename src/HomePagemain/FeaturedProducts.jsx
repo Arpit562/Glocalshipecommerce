@@ -1,23 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import { FiShoppingCart, FiEye, FiHeart } from "react-icons/fi";
-import { Link } from "react-router-dom";
-import { FaStar } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import { useWishlist } from "../Context/WishlistContext";
 import { useCart } from "../Context/CartContext";
-import { useNavigate } from "react-router-dom";
 
-const NewArrival = () => {
+const FeaturedProducts = () => {
   const [visibleCards, setVisibleCards] = useState(4);
   const [activeDot, setActiveDot] = useState(0);
   const sliderRef = useRef(null);
   const navigate = useNavigate();
+
   const { addToWishlist } = useWishlist();
   const { addToCart } = useCart();
 
-  // 🔹 State for modal
+  // Modal state
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const trendingItems = [
+  const products = [
     {
       id: 1,
       title: "Handmade Pot",
@@ -63,24 +62,6 @@ const NewArrival = () => {
     },
   ];
 
-  // Slick settings (not used in your custom scroll)
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 600,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    pauseOnHover: false,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 3 } },
-      { breakpoint: 768, settings: { slidesToShow: 2 } },
-      { breakpoint: 480, settings: { slidesToShow: 1 } },
-    ],
-  };
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 576) setVisibleCards(1);
@@ -88,7 +69,6 @@ const NewArrival = () => {
       else if (window.innerWidth < 1024) setVisibleCards(3);
       else setVisibleCards(4);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -97,7 +77,6 @@ const NewArrival = () => {
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
-
     const handleScroll = () => {
       const cardWidth = slider.firstChild?.offsetWidth + 20;
       const scrollPosition = slider.scrollLeft;
@@ -106,7 +85,6 @@ const NewArrival = () => {
       );
       setActiveDot(newActiveDot);
     };
-
     slider.addEventListener("scroll", handleScroll);
     return () => slider.removeEventListener("scroll", handleScroll);
   }, [visibleCards]);
@@ -114,7 +92,6 @@ const NewArrival = () => {
   const scrollToSlide = (index) => {
     const slider = sliderRef.current;
     if (!slider) return;
-
     const cardWidth = slider.firstChild?.offsetWidth + 20;
     slider.scrollTo({
       left: index * visibleCards * cardWidth,
@@ -122,7 +99,7 @@ const NewArrival = () => {
     });
   };
 
-  // Touch swipe handling
+  // Swipe handling
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
 
@@ -131,10 +108,7 @@ const NewArrival = () => {
   const handleTouchEnd = () => {
     if (touchStart - touchEnd > 50) {
       scrollToSlide(
-        Math.min(
-          activeDot + 1,
-          Math.ceil(trendingItems.length / visibleCards) - 1
-        )
+        Math.min(activeDot + 1, Math.ceil(products.length / visibleCards) - 1)
       );
     }
     if (touchStart - touchEnd < -50) {
@@ -144,14 +118,11 @@ const NewArrival = () => {
 
   return (
     <div className="slider-section bg-gray-50">
-      <div className="slider-top">
-        <div className="text-center mb-">
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-4 font-serif">
-            Best Seller
-          </h2>
-          <div className="w-32 h-1.5 bg-gradient-to-r from-amber-500 to-orange-500 mx-auto rounded-full shadow-lg" />
-
-        </div>
+      <div className="text-center mb-">
+        <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-4 font-serif">
+          Best Seller
+        </h2>
+        <div className="w-32 h-1.5 bg-gradient-to-r from-amber-500 to-orange-500 mx-auto rounded-full shadow-lg" />
       </div>
 
       <div className="max-w-7xl mx-auto">
@@ -162,25 +133,22 @@ const NewArrival = () => {
           onTouchEnd={handleTouchEnd}
           className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-5 no-scrollbar scroll-hidden"
         >
-          {trendingItems.map((item) => (
+          {products.map((item) => (
             <div
               key={item.id}
               className="flex-shrink-0 w-full sm:w-[calc(50%-10px)] md:w-[calc(33.33%-14px)] lg:w-[calc(25%-15px)] snap-start bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 relative group border-2 border-transparent hover:border-amber-400"
             >
-              {/* Product Image */}
               <div className="relative overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.title}
                   className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                {/* Price Tag */}
                 <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-sm group-hover:bg-amber-50 group-hover:text-amber-600 transition-colors duration-300">
-                  <span className="font-bold text-gray-900 group-hover:text-amber-600 transition-colors duration-300">
+                  <span className="font-bold text-gray-900 group-hover:text-amber-600">
                     {item.price}
                   </span>
                 </div>
-                {/* Action Icons */}
                 <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-3 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
                   <button
                     onClick={() => {
@@ -191,7 +159,6 @@ const NewArrival = () => {
                   >
                     <FiShoppingCart className="w-5 h-5" />
                   </button>
-                  {/* 🔹 Eye Button opens Modal */}
                   <button
                     onClick={() => setSelectedProduct(item)}
                     className="bg-white p-2 rounded-full cursor-pointer shadow-md hover:bg-amber-50 hover:text-amber-500 transition-all duration-300 transform hover:scale-110"
@@ -209,23 +176,22 @@ const NewArrival = () => {
                   </button>
                 </div>
               </div>
-              {/* Product Title */}
               <div className="p-4 text-center space-y-2">
                 <h3 className="text-lg font-semibold text-gray-800 line-clamp-2 group-hover:text-amber-600 transition-colors duration-300">
                   {item.title}
                 </h3>
                 <p className="text-gray-500 text-sm max-w-md mx-auto line-clamp-3">
-                  {item.category}
+                  {item.description}
                 </p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Custom Dot Indicators */}
+        {/* Dots */}
         <div className="flex justify-center gap-2 mt-5">
           {Array.from({
-            length: Math.ceil(trendingItems.length / visibleCards),
+            length: Math.ceil(products.length / visibleCards),
           }).map((_, index) => (
             <button
               key={index}
@@ -239,49 +205,45 @@ const NewArrival = () => {
         </div>
 
         <div className="flex justify-center items-center mt-5">
-          <div>
-            <Link to={""}>
-              <button className="group inline-flex items-center cursor-pointer justify-center px-6 py-3 bg-amber-400 hover:bg-amber-500 text-white font-semibold rounded-md shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-                View all
-                <svg
-                  className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
-                </svg>
-              </button>
-            </Link>
-          </div>
+          <Link to="">
+            <button className="group inline-flex items-center cursor-pointer justify-center px-6 py-3 bg-amber-400 hover:bg-amber-500 text-white font-semibold rounded-md shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+              View all
+              <svg
+                className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </button>
+          </Link>
         </div>
       </div>
 
-      {/* 🔹 Popup Modal */}
+      {/* Modal */}
       {selectedProduct && (
         <div
           className="fixed inset-0 bg-black/90 flex justify-center items-center z-50"
-          onClick={() => setSelectedProduct(null)} // 🔹 Click outside closes modal
+          onClick={() => setSelectedProduct(null)}
         >
           <div
             className="bg-white rounded-lg shadow-lg max-w-3xl w-full relative p-6 flex flex-col md:flex-row gap-6"
-            onClick={(e) => e.stopPropagation()} // 🔹 Prevent close when clicking inside
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button (Top Right) */}
             <button
               onClick={() => setSelectedProduct(null)}
-              className="absolute top-3 right-3 text-gray-600 hover:text-red-500 text-2xl font-bold  w-8 h-8 flex items-center justify-center rounded-full cursor-pointer"
+              className="absolute top-3 right-3 text-gray-600 hover:text-red-500 text-2xl font-bold w-8 h-8 flex items-center justify-center rounded-full cursor-pointer"
             >
               ✕
             </button>
 
-            {/* Product Image (Left side) */}
+            {/* Image */}
             <div className="md:w-1/2 w-full">
               <img
                 src={selectedProduct.image}
@@ -290,7 +252,7 @@ const NewArrival = () => {
               />
             </div>
 
-            {/* Product Content (Right side) */}
+            {/* Content */}
             <div className="md:w-1/2 w-full flex flex-col justify-center">
               <h2 className="text-2xl font-semibold text-gray-800 mb-3">
                 {selectedProduct.title}
@@ -302,25 +264,23 @@ const NewArrival = () => {
                 {selectedProduct.price}
               </p>
 
-              {/* Full-width stacked buttons */}
-              {/* Full-width stacked buttons */}
+              {/* Buttons */}
               <div className="flex flex-col gap-3 w-full">
                 <button
                   onClick={() => {
-                    addToCart(selectedProduct); // ✅ Add product to cart
-                    navigate("/cart"); // ✅ Redirect to cart page
-                    setSelectedProduct(null); // ✅ Close modal after action
+                    addToCart(selectedProduct);
+                    navigate("/cart");
+                    setSelectedProduct(null);
                   }}
                   className="w-full px-5 py-3 rounded-md bg-gradient-to-r from-amber-400 to-amber-500 text-white font-semibold hover:bg-amber-600 transition-all"
                 >
                   Add to Cart
                 </button>
-
                 <button
                   onClick={() => {
-                    addToCart(selectedProduct); // ✅ Add product before checkout
-                    navigate("/checkout"); // ✅ Go directly to checkout
-                    setSelectedProduct(null); // ✅ Close modal
+                    addToCart(selectedProduct);
+                    navigate("/checkout");
+                    setSelectedProduct(null);
                   }}
                   className="w-full px-5 py-3 rounded-md bg-gradient-to-r from-amber-400 to-amber-500 text-white font-semibold hover:bg-green-600 transition-all"
                 >
@@ -335,4 +295,4 @@ const NewArrival = () => {
   );
 };
 
-export default NewArrival;
+export default FeaturedProducts;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useProducts } from "../Context/ProducatContext";
+import { useProducts } from "../Context/ProductContext";
 import {
   FaChevronDown,
   FaHeart,

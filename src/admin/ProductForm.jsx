@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useProducts } from '../Context/ProducatContext';
+import { useProducts } from '../Context/ProductContext';
 import { 
   CloudUploadIcon, 
   XIcon, 

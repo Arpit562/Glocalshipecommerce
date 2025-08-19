@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FiShoppingCart, FiEye, FiHeart } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
-import { useProducts } from "../Context/ProducatContext";
+import { useProducts } from "../Context/ProductContext";
 import { useWishlist } from "../Context/WishlistContext";
 import { useCart } from "../Context/CartContext"; // ✅ import cart context
 
@@ -18,6 +18,46 @@ const TrendingProducts = () => {
 
   const [selectedProduct, setSelectedProduct] = useState(null); // ✅ modal state
   const [quantity, setQuantity] = useState(1);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 600,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: false,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+
+  const ProductCard = ({ product }) => (
+    <div className="slider-card relative ">
+      <div className="absolute top-3 left-3 z-10">
+        <span className="trending-badge">Trending</span>
+      </div>
+    </div>
+  );
 
   useEffect(() => {
     const handleResize = () => {
@@ -96,10 +136,9 @@ const TrendingProducts = () => {
     <section className="py-10 px-5 bg-gray-50">
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-4 font-serif">
-          Trending Products
+          Trending Producat
         </h2>
         <div className="w-32 h-1.5 bg-gradient-to-r from-amber-500 to-orange-500 mx-auto rounded-full shadow-lg" />
-
       </div>
 
       <div className="max-w-7xl mx-auto">
@@ -112,6 +151,7 @@ const TrendingProducts = () => {
               key={item.id}
               className="flex-shrink-0 w-full sm:w-[calc(50%-10px)] md:w-[calc(33.33%-14px)] lg:w-[calc(25%-15px)] snap-start bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 relative group border-2 border-transparent hover:border-amber-400"
             >
+              {/* Product Image */}
               <div className="relative overflow-hidden">
                 {item.images && item.images.length > 0 ? (
                   <img
@@ -129,6 +169,7 @@ const TrendingProducts = () => {
                   <span className="font-bold text-gray-900">₹{item.price}</span>
                 </div>
 
+                {/* Action Icons */}
                 <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-3 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
                   {/* Cart button */}
                   <button
@@ -162,6 +203,7 @@ const TrendingProducts = () => {
                 </div>
               </div>
 
+              {/* Product Title */}
               <div className="p-4 text-center space-y-2">
                 <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
                   {item.title}
@@ -229,8 +271,6 @@ const TrendingProducts = () => {
                 {selectedProduct.price}
               </p>
 
-              {/* Full-width stacked buttons */}
-              {/* Full-width stacked buttons */}
               {/* Full-width stacked buttons */}
               <div className="flex flex-col gap-4 w-full">
                 {/* Add to Cart Button */}
