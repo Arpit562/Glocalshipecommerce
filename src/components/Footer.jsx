@@ -165,8 +165,8 @@ const Footer = () => {
       <div className="border-t border-gray-200 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
         <p>
           &copy; {new Date().getFullYear()} GlocalShipeComers. All rights reserved.
-          <a href="#" className="ml-4 hover:text-amber-600 transition-colors">Privacy Policy</a>
-          <a href="#" className="ml-4 hover:text-amber-600 transition-colors">Terms of Service</a>
+          <a href="#" className="ml-4 text-amber-600">Privacy Policy</a>
+          <a href="#" className="ml-4 text-amber-600">Terms of Service</a>
         </p>
       </div>
     </footer>

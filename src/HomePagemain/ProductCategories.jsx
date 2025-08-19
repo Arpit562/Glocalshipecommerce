@@ -33,13 +33,16 @@ const categories = [
 
 const ProductCategories = () => {
   return (
-    <section className="py-10 px-4 md:px-10 bg-[#F4F2E9]">
-      <div className="mb-6 text-center slider-heading-row">
-        <div className="slider-icon text-white text-2xl">✧</div>
-        <h2 className="slider-heading ">
+    <div className="w-full bg-gray-50">
+    <section className="max-w-7xl mx-auto py-10 ">
+      <div className="mb-6 text-center">
+        <h2 className="slider-heading mb-4">
           Explore Our Categories
         </h2>
+        <div className="w-32 h-1.5 bg-gradient-to-r from-amber-500 to-orange-500 mx-auto rounded-full shadow-lg" />
+
       </div>
+
       
       <Swiper
         spaceBetween={20}
@@ -79,6 +82,7 @@ const ProductCategories = () => {
         ))}
       </Swiper>
     </section>
+    </div>
   );
 };
 
