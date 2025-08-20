@@ -8,11 +8,16 @@ import {
   FaShieldAlt,
   FaHandPaper,
 } from "react-icons/fa";
+import { useWishlist } from "../Context/WishlistContext"; // ✅ hook import
+// import { useCart } from "../Context/CartContext"; // if you have cart context
 
 const ProductDetails = () => {
   const { id } = useParams();
   const { products } = useContext(ProductContext);
   const product = products.find((p) => p.id === parseInt(id));
+
+  const { wishlist, addToWishlist, removeFromWishlist } = useWishlist(); // ✅ wishlist integration
+  // const { addToCart } = useCart(); // if you have cart
 
   const [showDetails, setShowDetails] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -25,14 +30,15 @@ const ProductDetails = () => {
     return <div className="p-6 text-red-600 text-xl">Product not found.</div>;
   }
 
+  // check if already in wishlist
+  const isInWishlist = wishlist.some((item) => item.id === product.id);
+
   return (
     <div className="prdt-details-container bg-gray-50 max-w-6xl mx-auto px-4 py-10 mt-20">
       <div className="prdt-layout flex flex-col md:flex-row items-start gap-10">
-        {/* Left: Image Gallery and Features */}
+        {/* Left: Image Gallery */}
         <div className="w-full md:w-1/2">
-          {/* Image Gallery */}
           <div className="prdt-img-gallery flex flex-col md:flex-row gap-4">
-            {/* Thumbnails */}
             <div className="prdt-thumbnails flex md:flex-col gap-2 md:max-h-[500px] overflow-y-auto">
               {images.map((img, index) => (
                 <img
@@ -49,7 +55,6 @@ const ProductDetails = () => {
               ))}
             </div>
 
-            {/* Main Image */}
             <div className="prdt-main-img flex-1">
               <img
                 src={selectedImage}
@@ -59,7 +64,7 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          {/* Features Section Below Image */}
+          {/* Features */}
           <div className="prdt-features mt-6 w-full flex justify-center">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-[460px]">
               <div className="bg-[#F4F6F8] p-2 text-center">
@@ -71,7 +76,6 @@ const ProductDetails = () => {
                   100% safe & encrypted checkout.
                 </p>
               </div>
-
               <div className="bg-[#F4F6F8] p-2 text-center">
                 <FaShieldAlt className="mx-auto mb-3 text-2xl text-gray-700" />
                 <h4 className="text-sm font-semibold text-gray-900">
@@ -81,8 +85,7 @@ const ProductDetails = () => {
                   Orders are fully insured.
                 </p>
               </div>
-
-              <div className="bg-[#F4F6F8] p-2 text-center ">
+              <div className="bg-[#F4F6F8] p-2 text-center">
                 <FaHandPaper className="mx-auto mb-3 text-2xl text-gray-700" />
                 <h4 className="text-sm font-semibold text-gray-900">
                   100% Handmade
@@ -109,9 +112,9 @@ const ProductDetails = () => {
             {product.price}
           </div>
 
-          {/* Quantity Selector */}
+          {/* Quantity */}
           <div className="prdt-quantity-wrapper flex flex-col gap-4">
-            <div className="quantity-head ">Quantity:</div>
+            <div className="quantity-head">Quantity:</div>
             <div className="prdt-quantity-ctrl flex w-fit items-center border border-amber-400/50 rounded-md overflow-hidden">
               <button
                 onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
@@ -131,26 +134,38 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          {/* Add to Cart, Wishlist, Buy Now */}
+          {/* Action Buttons */}
           <div className="prdt-action-btn space-y-4">
-            {/* Add to Cart and Wishlist Side by Side */}
             <div className="flex gap-4">
-              <button className="flex-1 px-6 py-2 bg-gradient-to-r from-amber-400 to-amber-500 text-white rounded-lg transition-all duration-100 ease-in-out hover:from-amber-500 hover:to-amber-600">
+              <button
+                className="flex-1 px-6 py-2 bg-gradient-to-r from-amber-400 to-amber-500 text-white rounded-lg transition-all duration-100 ease-in-out hover:from-amber-500 hover:to-amber-600"
+                // onClick={() => addToCart(product, quantity)} // if cart context
+              >
                 Add to Cart
               </button>
 
-              <button className="p-3 rounded-full bg-white border border-amber-400/50 transition">
-                <FaHeart className="text-amber-500 text-xl" />
+              <button
+                onClick={() =>
+                  isInWishlist
+                    ? removeFromWishlist(product.id)
+                    : addToWishlist(product)
+                }
+                className="p-3 rounded-full bg-white border border-amber-400/50 transition"
+              >
+                <FaHeart
+                  className={`text-xl ${
+                    isInWishlist ? "text-red-500" : "text-amber-500"
+                  }`}
+                />
               </button>
             </div>
 
-            {/* Buy Now button below */}
             <button className="w-full px-6 py-2 bg-gradient-to-r from-amber-400 to-amber-500 text-white rounded-lg transition-all duration-100 ease-in-out hover:from-amber-500 hover:to-amber-600">
               Buy Now
             </button>
           </div>
 
-          {/* Description Accordion */}
+          {/* Accordion */}
           <div className="prdt-drpdown border border-amber-400/50 bg-white/70 backdrop-blur-sm rounded-lg shadow-sm overflow-hidden transition-all duration-500 ease-in-out">
             <button
               onClick={() => setShowDetails((prev) => !prev)}
