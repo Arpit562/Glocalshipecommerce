@@ -26,6 +26,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ErrorBoundary from './components/ErrorBoundary';
 import { WishlistProvider } from './Context/WishlistContext';
 import { CartProvider } from "./Context/CartContext";
+import BlogTimeline from './Pages/Blog';
 
 
 function App() {
@@ -52,6 +53,8 @@ function App() {
                     <Route path="/quick-view/:id" element={<QuickViewPage />} />
                     <Route path="/product/:id" element={<ProductDetails />} />
 
+                    {/* blogs */}
+                    <Route path="/blogs" element={<BlogTimeline />} />
 
                     {/* admin  */}
                     <Route path="/adminlogin" element={<AdminLogin />} />
